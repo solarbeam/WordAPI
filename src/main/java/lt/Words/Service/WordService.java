@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WordService {
@@ -43,6 +44,17 @@ public class WordService {
     }
 
     public Word updateWord(Word word) {
+        if(word.getId() != null) {
+            Optional<Word> existingWord = wordRepository.findById(word.getId());
+            existingWord.ifPresentOrElse(
+                    entity -> {
+                        // only save properties that are not null
+                        word.setValue(word.getValue() != null ? word.getValue() : entity.getValue());
+                    },
+                    () -> {throw new WordDoesNotExistException("Word doesn't exist, use POST to create");});
+        } else {
+            throw new WordDoesNotExistException("Word doesn't exist, use POST to create");
+        }
         return wordRepository.save(word);
     }
 

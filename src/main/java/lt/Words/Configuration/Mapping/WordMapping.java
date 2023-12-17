@@ -26,6 +26,9 @@ public class WordMapping {
     }
 
     private boolean isPalindrome(String value) {
+        if (value == null) {
+            return false;
+        }
         String lowercaseValue = value.toLowerCase();
         String reverse = new StringBuilder(lowercaseValue).reverse().toString();
         return lowercaseValue.equals(reverse);
