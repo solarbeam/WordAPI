@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @org.springframework.stereotype.Repository
 public class WordRepository implements Repository<Word, Long> {
     private final List<Word> mockDatabase;
-    private Long idSequence = 1l;
+    private Long idSequence = 1L;
 
     public WordRepository() {
         this.mockDatabase = new ArrayList<Word>();
