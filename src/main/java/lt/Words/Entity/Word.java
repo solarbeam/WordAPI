@@ -2,12 +2,17 @@ package lt.Words.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Word {
 
     @Id
-    public Long id;
-    public String value;
-    public boolean isPalindrome;
+    private Long id;
+    private String value;
+    private boolean isPalindrome;
 }
